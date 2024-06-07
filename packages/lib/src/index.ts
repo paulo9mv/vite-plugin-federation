@@ -149,7 +149,7 @@ export default function federation(
         )?.id
         return await this.resolve(`${dirname(federationId!)}/satisfy.mjs`)
       }
-      if (typeof args[0] === "string" && args[0].startsWith("virtual:") && args[0].match("virtual:(.*?)__federation__"))) {
+      if (typeof args[0] === "string" && args[0].startsWith("virtual:") && args[0].match("virtual:(.*?)__federation__")) {
         return {
           id: '\0virtual:__federation__',
           moduleSideEffects: true

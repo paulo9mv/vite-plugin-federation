@@ -192,7 +192,7 @@ export {__federation_method_ensure, __federation_method_getRemote , __federation
         }
       }
 
-      if (id === '\0virtual:__federation__') {
+      if (typeof id === "string" && id.startsWith("virtual:") && id.match("virtual:(.*?)__federation__")) {
         const scopeCode = await devSharedScopeCode.call(
           this,
           parsedOptions.devShared
@@ -225,7 +225,9 @@ export {__federation_method_ensure, __federation_method_getRemote , __federation
         enter(node: any) {
           if (
             node.type === 'ImportDeclaration' &&
-            node.source?.value === 'virtual:__federation__'
+            typeof node.source?.value === "string" &&
+            node.source?.value.startsWith("virtual:") &&
+            node.source?.value.match("virtual:(.*?)__federation__")
           ) {
             manualRequired = node
           }

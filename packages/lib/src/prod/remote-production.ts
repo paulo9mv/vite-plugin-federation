@@ -219,7 +219,7 @@ export function prodRemotePlugin(
       }
 
       if (builderInfo.isHost) {
-        if (id === '\0virtual:__federation__') {
+        if (typeof id === "string" && id.startsWith("virtual:") && id.match("virtual:(.*?)__federation__")) {
           const res: string[] = []
           parsedOptions.prodShared.forEach((arr) => {
             const obj = arr[1]
